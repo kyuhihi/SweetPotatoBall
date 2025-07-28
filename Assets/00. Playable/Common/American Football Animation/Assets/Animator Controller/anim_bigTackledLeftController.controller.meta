@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6f63b776428eed444a801609ac6f1b9c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 306453
+  packageName: American Football Animation
+  packageVersion: 1.0
+  assetPath: Assets/American Football Animation/Assets/Animator Controller/anim_bigTackledLeftController.controller
+  uploadId: 726247

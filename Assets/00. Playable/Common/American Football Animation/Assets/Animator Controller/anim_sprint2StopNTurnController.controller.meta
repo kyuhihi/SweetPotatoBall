@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ac65c9880af582b4fb13aafeab871002
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 306453
+  packageName: American Football Animation
+  packageVersion: 1.0
+  assetPath: Assets/American Football Animation/Assets/Animator Controller/anim_sprint2StopNTurnController.controller
+  uploadId: 726247

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d67fa57aabf8d2e42a4877ad4b37951e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 306453
+  packageName: American Football Animation
+  packageVersion: 1.0
+  assetPath: Assets/American Football Animation/Assets/Animator Controller/anim_tackleBackController.controller
+  uploadId: 726247

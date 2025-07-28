@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5041ac68e9666974cafe4ae1f28437f1
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 306453
+  packageName: American Football Animation
+  packageVersion: 1.0
+  assetPath: Assets/American Football Animation/Assets/Animator Controller/anim_pass2Controller.controller
+  uploadId: 726247

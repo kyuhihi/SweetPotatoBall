@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fb58eb4b86fa3da44aec6b1db7c5b66b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 306453
+  packageName: American Football Animation
+  packageVersion: 1.0
+  assetPath: Assets/American Football Animation/Assets/Animator Controller/anim_getUp2FWDgetUp2LeftController.controller
+  uploadId: 726247

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f78838b5508a67149a8726379b5c25ed
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 306453
+  packageName: American Football Animation
+  packageVersion: 1.0
+  assetPath: Assets/American Football Animation/Assets/Animator Controller/anim_jumpCatchLeftController.controller
+  uploadId: 726247

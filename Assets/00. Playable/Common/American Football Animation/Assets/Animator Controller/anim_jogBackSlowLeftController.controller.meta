@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: abd404a299c54d6418069cd86fe41e90
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 306453
+  packageName: American Football Animation
+  packageVersion: 1.0
+  assetPath: Assets/American Football Animation/Assets/Animator Controller/anim_jogBackSlowLeftController.controller
+  uploadId: 726247

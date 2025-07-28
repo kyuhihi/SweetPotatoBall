@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 74aab37fbcfa9484bbff14e9429a02e0
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 306453
+  packageName: American Football Animation
+  packageVersion: 1.0
+  assetPath: Assets/American Football Animation/Assets/Animator Controller/anim_powerMightCutController.controller
+  uploadId: 726247

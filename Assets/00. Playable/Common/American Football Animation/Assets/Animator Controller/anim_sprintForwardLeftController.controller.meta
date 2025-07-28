@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3d2268757f709694c81d5bb2f293534e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 306453
+  packageName: American Football Animation
+  packageVersion: 1.0
+  assetPath: Assets/American Football Animation/Assets/Animator Controller/anim_sprintForwardLeftController.controller
+  uploadId: 726247

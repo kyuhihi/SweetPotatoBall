@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 965c0b23e11227344a60ad0207aaa4a7
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 306453
+  packageName: American Football Animation
+  packageVersion: 1.0
+  assetPath: Assets/American Football Animation/Assets/Animator Controller/anim_blockRightController.controller
+  uploadId: 726247
