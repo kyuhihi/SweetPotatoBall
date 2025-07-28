@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7b9f556a0ec755347a9a707675c4ec5e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 306453
+  packageName: American Football Animation
+  packageVersion: 1.0
+  assetPath: Assets/American Football Animation/Assets/Animator Controller/anim_injuredLeftController.controller
+  uploadId: 726247

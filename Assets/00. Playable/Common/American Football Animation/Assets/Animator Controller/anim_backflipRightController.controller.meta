@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0472bd8c31de04645b4a5eafceea98c4
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 306453
+  packageName: American Football Animation
+  packageVersion: 1.0
+  assetPath: Assets/American Football Animation/Assets/Animator Controller/anim_backflipRightController.controller
+  uploadId: 726247

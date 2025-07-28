@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8b36d56b20ea4994fbc288b8912fa7d4
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 306453
+  packageName: American Football Animation
+  packageVersion: 1.0
+  assetPath: Assets/American Football Animation/Assets/Animator Controller/anim_cheer_cutController.controller
+  uploadId: 726247

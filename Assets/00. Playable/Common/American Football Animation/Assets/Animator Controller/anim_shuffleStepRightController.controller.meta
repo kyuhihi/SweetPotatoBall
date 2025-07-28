@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fa2f43c3aef15194d8121d1a676948ab
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 306453
+  packageName: American Football Animation
+  packageVersion: 1.0
+  assetPath: Assets/American Football Animation/Assets/Animator Controller/anim_shuffleStepRightController.controller
+  uploadId: 726247

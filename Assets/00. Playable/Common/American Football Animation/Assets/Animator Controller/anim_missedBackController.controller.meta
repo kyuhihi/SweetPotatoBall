@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8c9f58e64f57c7e4aa182cf466131922
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 306453
+  packageName: American Football Animation
+  packageVersion: 1.0
+  assetPath: Assets/American Football Animation/Assets/Animator Controller/anim_missedBackController.controller
+  uploadId: 726247
