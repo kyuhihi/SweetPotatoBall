@@ -1,4 +1,0 @@
-repository "SweetPotatoBall/SweetPotatoBall@14569188376032@cloud"
-  path "/"
-    br "/main"
-    co "/main"
