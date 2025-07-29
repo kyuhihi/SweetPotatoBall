@@ -27,7 +27,7 @@ public class SkyController : MonoBehaviour
 
     void Start()
     {
-        SetSky(SkyState.Night);
+        SetSky(SkyState.Day);
     }
     void Update()
     {
