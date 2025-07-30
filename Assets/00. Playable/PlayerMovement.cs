@@ -50,6 +50,11 @@ public class PlayerMovement : BasePlayerMovement
         m_IsRunning = context.ReadValueAsButton();
     }
 
+    public void OnPassInput(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        Debug.Log("패스 동작 실행"); // 패스 동작에 대한 로직을 여기에 추가
+    }
+
 
     // private void OnMove(InputAction.CallbackContext context)
     // {

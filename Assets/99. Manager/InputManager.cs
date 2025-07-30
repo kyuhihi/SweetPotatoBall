@@ -22,6 +22,7 @@ public class InputManager : MonoBehaviour
         inputActions.Player.Move.canceled += OnMove;
         inputActions.Player.Sprint.performed += OnSprint;
         inputActions.Player.Sprint.canceled += OnSprint;
+        inputActions.Player.Pass.performed += OnPass;
     }
 
     void OnDisable()
@@ -38,18 +39,19 @@ public class InputManager : MonoBehaviour
         GameObject[] players = GameObject.FindGameObjectsWithTag("BlueTeam");
 
         // 이름에서 숫자를 추출해서 정렬
-        System.Array.Sort(players, (x, y) => {
-        // "Player1", "Player2" 형식이라고 가정
-        string xNumber = x.name.Replace("Player", "");
-        string yNumber = y.name.Replace("Player", "");
-        
-        if (int.TryParse(xNumber, out int xNum) && int.TryParse(yNumber, out int yNum))
+        System.Array.Sort(players, (x, y) =>
         {
-            return xNum.CompareTo(yNum);
-        }
-        return x.name.CompareTo(y.name);
+            // "Player1", "Player2" 형식이라고 가정
+            string xNumber = x.name.Replace("Player", "");
+            string yNumber = y.name.Replace("Player", "");
+
+            if (int.TryParse(xNumber, out int xNum) && int.TryParse(yNumber, out int yNum))
+            {
+                return xNum.CompareTo(yNum);
+            }
+            return x.name.CompareTo(y.name);
         });
-    
+
 
         foreach (GameObject player in players)
         {
@@ -69,8 +71,6 @@ public class InputManager : MonoBehaviour
 
         SetControlTo(currentIndex);
     }
-
-  
 
     void Update()
     {
@@ -104,7 +104,18 @@ public class InputManager : MonoBehaviour
             }
         }
     }
-
+    private void OnPass(InputAction.CallbackContext context)
+    {
+        if (currentIndex < playerList.Count)
+        {
+            PlayerMovement playerMovement = playerList[currentIndex].GetComponent<PlayerMovement>();
+            if (playerMovement != null)
+            {
+                playerMovement.OnPassInput(context);
+            }
+        }
+    }
+    
     void SetControlTo(int index)
     {
         for (int i = 0; i < playerList.Count; i++)
@@ -115,7 +126,7 @@ public class InputManager : MonoBehaviour
                 playerMovement.IsControlledByPlayer = (i == index);
             }
 
-                    // 카메라도 현재 플레이어를 따라가도록 설정
+            // 카메라도 현재 플레이어를 따라가도록 설정
             if (cameraController != null && index < playerList.Count)
             {
                 cameraController.SetTarget(playerList[index].transform);
