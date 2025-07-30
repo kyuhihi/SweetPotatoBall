@@ -8,6 +8,15 @@ public class PlayerMovement : MonoBehaviour
     public float runSpeed = 5f;
     private Animator m_Animator;
     private Rigidbody m_Rigidbody;
+    private bool m_IsControlled = false;
+    public bool IsControlled
+    {
+        get { return m_IsControlled; }
+        set
+        {
+            m_IsControlled = value;
+        }
+    }
 
     private Vector3 m_Movement;
     private Quaternion m_Rotation = Quaternion.identity;
@@ -23,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
         m_Animator.applyRootMotion = true;
         m_Rigidbody = GetComponent<Rigidbody>();
         inputActions = new PlayerInputActions();
-        
     }
 
     void OnEnable()
