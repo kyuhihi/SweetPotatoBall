@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : BasePlayerMovement
 {
     public float turnSpeed = 20f;
     public float walkSpeed = 2f;
@@ -15,6 +15,20 @@ public class PlayerMovement : MonoBehaviour
     private bool m_IsRunning = false;
 
     private PlayerInputActions inputActions;
+
+
+    protected override void Start()
+    {
+        base.Start();
+        // 필요한 초기화 코드가 있다면 여기에 추가
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        // 필요한 업데이트 로직이 있다면 여기에 추가
+    }
+
 
     void Awake()
     {
