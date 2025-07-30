@@ -17,4 +17,11 @@ public class TopTargetFollowing : MonoBehaviour
         // 항상 타겟을 바라보게
         transform.LookAt(target.position);
     }
+
+    
+    // 타겟을 변경하는 메서드 추가
+    public void SetTarget(Transform newTarget)
+    {
+        target = newTarget;
+    }
 }

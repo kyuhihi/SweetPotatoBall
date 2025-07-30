@@ -14,12 +14,11 @@ public class PlayerMovement : BasePlayerMovement
     private Vector2 m_InputVector = Vector2.zero;
     private bool m_IsRunning = false;
 
-    private PlayerInputActions inputActions;
-
 
     protected override void Start()
     {
         base.Start();
+
         // 필요한 초기화 코드가 있다면 여기에 추가
     }
 
@@ -36,37 +35,33 @@ public class PlayerMovement : BasePlayerMovement
         // m_Animator.applyRootMotion = false;
         m_Animator.applyRootMotion = true;
         m_Rigidbody = GetComponent<Rigidbody>();
-        inputActions = new PlayerInputActions();
-        
     }
 
-    void OnEnable()
+    // InputManager에서 호출할 메서드들
+    public void OnMoveInput(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        inputActions.Player.Enable();
-        inputActions.Player.Move.performed += OnMove;
-        inputActions.Player.Move.canceled += OnMove;
-        inputActions.Player.Sprint.performed += OnSprint;
-        inputActions.Player.Sprint.canceled += OnSprint;
-    }
-
-    void OnDisable()
-    {
-        inputActions.Player.Move.performed -= OnMove;
-        inputActions.Player.Move.canceled -= OnMove;
-        inputActions.Player.Sprint.performed -= OnSprint;
-        inputActions.Player.Sprint.canceled -= OnSprint;
-        inputActions.Player.Disable();
-    }
-
-    private void OnMove(InputAction.CallbackContext context)
-    {
+        if (!IsControlledByPlayer) return;
         m_InputVector = context.ReadValue<Vector2>();
     }
 
-    private void OnSprint(InputAction.CallbackContext context)
+    public void OnSprintInput(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
+        if (!IsControlledByPlayer) return;
         m_IsRunning = context.ReadValueAsButton();
     }
+
+
+    // private void OnMove(InputAction.CallbackContext context)
+    // {
+    //         if (!IsControlledByPlayer) return;
+    //     m_InputVector = context.ReadValue<Vector2>();
+    // }
+
+    // private void OnSprint(InputAction.CallbackContext context)
+    // {
+    //     if (!IsControlledByPlayer) return;
+    //     m_IsRunning = context.ReadValueAsButton();
+    // }
 
     void OnFootstep()
     {
@@ -75,6 +70,12 @@ public class PlayerMovement : BasePlayerMovement
 
     void FixedUpdate()
     {
+        if (!IsControlledByPlayer)
+        {
+            // 조작되지 않는 플레이어는 입력값을 0으로 초기화
+            m_InputVector = Vector2.zero;
+            m_IsRunning = false;
+        }
 
         float horizontal = m_InputVector.x;
         float vertical = m_InputVector.y;
@@ -93,7 +94,6 @@ public class PlayerMovement : BasePlayerMovement
 
         // 애니메이터에 부드럽게 속도 전달
         m_Animator.SetFloat("Speed", appliedSpeed, 0.1f, Time.deltaTime);
-        //m_Animator.SetFloat("Speed", appliedSpeed);
 
         if (inputMagnitude > 0.01f)
         {
