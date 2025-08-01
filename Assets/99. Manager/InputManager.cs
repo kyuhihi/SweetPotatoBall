@@ -116,6 +116,16 @@ public class InputManager : MonoBehaviour
         }
     }
     
+    public void SwitchToPlayer(GameObject targetPlayer)
+    {
+        int playerIndex = playerList.IndexOf(targetPlayer);
+        if (playerIndex >= 0)
+        {
+            currentIndex = playerIndex;
+            SetControlTo(currentIndex);
+        }
+    }
+    
     void SetControlTo(int index)
     {
         for (int i = 0; i < playerList.Count; i++)

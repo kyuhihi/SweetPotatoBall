@@ -49,11 +49,20 @@ public class PlayerMovement : BasePlayerMovement
         if (!IsControlledByPlayer) return;
         m_IsRunning = context.ReadValueAsButton();
     }
-
     public void OnPassInput(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        Debug.Log("패스 동작 실행"); // 패스 동작에 대한 로직을 여기에 추가
+        if (!IsControlledByPlayer) return;
+    
+        if (context.performed)
+        {
+            // TacticsManager에게 패스 요청
+            if (TacticsManager.Instance != null)
+            {
+                TacticsManager.Instance.RequestPass(gameObject);
+            }
+        }
     }
+    
 
 
     // private void OnMove(InputAction.CallbackContext context)

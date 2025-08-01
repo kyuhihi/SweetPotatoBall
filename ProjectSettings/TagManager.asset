@@ -7,6 +7,7 @@ TagManager:
   - Ball
   - BlueTeam
   - RedTeam
+  - InputManager
   layers:
   - Default
   - TransparentFX
