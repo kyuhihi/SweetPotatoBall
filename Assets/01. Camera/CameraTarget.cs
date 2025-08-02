@@ -4,9 +4,9 @@ using System.Collections.Generic;
 public class CameraTarget : MonoBehaviour
 {
     [SerializeField]
-    private Ball m_Ball; // °øÀÇ Transform
+    private Ball m_Ball; // ï¿½ï¿½ï¿½ï¿½ Transform
     [SerializeField]
-    private TopTargetFollowing m_TopTargetFollowing; // TopTargetFollowing ½ºÅ©¸³Æ®
+    private TopTargetFollowing m_TopTargetFollowing; // TopTargetFollowing ï¿½ï¿½Å©ï¿½ï¿½Æ®
     private string[] m_TargetTags = new string[] { "BlueTeam", "RedTeam" };
     void Start()
     {

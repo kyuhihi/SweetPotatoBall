@@ -22,6 +22,7 @@ public class TacticsManager : MonoBehaviour
         }
         else
         {
+            Debug.LogWarning("TacticsManager 인스턴스가 이미 존재합니다. 중복 제거.");
             Destroy(gameObject);
         }
     }
@@ -94,19 +95,82 @@ public class TacticsManager : MonoBehaviour
         return distanceScore * 0.6f + directionScore * 0.4f;
     }
 
+    private MultiAimConstraint GetHeadAimConstraint(GameObject player)
+    {
+        // 플레이어 하위의 모든 MultiAimConstraint 찾기
+        MultiAimConstraint[] allConstraints = player.GetComponentsInChildren<MultiAimConstraint>();
+
+        if (allConstraints.Length == 0)
+        {
+            Debug.LogWarning($"{player.name}에서 MultiAimConstraint를 찾을 수 없습니다.");
+            return null;
+        }
+        // 첫 번째 찾은 것 사용 (또는 특정 조건으로 필터링)
+        Debug.Log($"{player.name}에서 MultiAimConstraint 찾음: {allConstraints[0].name}");
+        return allConstraints[0];
+    }
+
     private void ExecutePass(GameObject passer, GameObject receiver)
     {
         Debug.Log($"{passer.name}이(가) {receiver.name}에게 패스!");
-        //passer.transform.GetChild
 
-        //Rig passerRig = GetPlayerRig(passer);
+        MultiAimConstraint headAimConstraintByPasser = GetHeadAimConstraint(passer);
+        MultiAimConstraint headAimConstraintByReceiver = GetHeadAimConstraint(receiver);
 
-        Transform headAimTransform = passer.transform.Find("Rig1/HeadAim");
-       
+        // null 체크 개선
+        if (headAimConstraintByPasser != null && headAimConstraintByReceiver != null)
+        {
+            var dataByPasser = headAimConstraintByPasser.data;
+            var dataByReceiver = headAimConstraintByReceiver.data;
+
+            // 새 WeightedTransformArray 생성
+            WeightedTransformArray newSourcesByPasser = new WeightedTransformArray();
+            WeightedTransformArray newSourcesByReceiver = new WeightedTransformArray();
+
+            // 서로 바라보도록 설정
+            newSourcesByPasser.Add(new WeightedTransform(receiver.transform, 1f));
+            newSourcesByReceiver.Add(new WeightedTransform(passer.transform, 1f));
+
+            dataByPasser.sourceObjects = newSourcesByPasser;
+            dataByReceiver.sourceObjects = newSourcesByReceiver;
+
+            // 데이터 재할당
+            headAimConstraintByPasser.data = dataByPasser;
+            headAimConstraintByReceiver.data = dataByReceiver;
+
+            // Weight도 확인
+            headAimConstraintByPasser.weight = 1f;
+            headAimConstraintByReceiver.weight = 1f;
+
+            // RigBuilder 업데이트 (중복 제거)
+            RigBuilder rigBuilderByPasser = passer.GetComponent<RigBuilder>();
+            RigBuilder rigBuilderByReceiver = receiver.GetComponent<RigBuilder>();
+            
+            if (rigBuilderByPasser != null)
+            {
+                rigBuilderByPasser.Build();
+            }
+            if (rigBuilderByReceiver != null)
+            {
+                rigBuilderByReceiver.Build();
+            }
+
+            Debug.Log($"{passer.name}과 {receiver.name}이 서로 바라보도록 설정됨.");
+        }
+        else
+        {
+            Debug.LogWarning("HeadAimConstraint를 찾을 수 없습니다.");
+        }
+
+
         // 여기에 실제 패스 로직 추가
+        // - 물리를 어떻게 할것인가
+        // - 공이 도착하면 sourceobjects를 초기화
         // - 공 이동
         // - 애니메이션 재생
         // - 사운드 재생 등
+
+
 
         // 패스 받은 플레이어로 컨트롤 전환
         SwitchControlToPlayer(receiver);

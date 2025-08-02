@@ -10,6 +10,8 @@ public class InputManager : MonoBehaviour
 
     private PlayerInputActions inputActions;
 
+
+
     void Awake()
     {
         inputActions = new PlayerInputActions();
