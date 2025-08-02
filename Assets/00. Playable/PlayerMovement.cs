@@ -44,15 +44,30 @@ public class PlayerMovement : BasePlayerMovement
         m_InputVector = context.ReadValue<Vector2>();
     }
 
+    
+    public void OnMoveInput(Vector2 moveInput)
+    {
+         m_InputVector = moveInput;
+    }
+
+
+
     public void OnSprintInput(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         if (!IsControlledByPlayer) return;
         m_IsRunning = context.ReadValueAsButton();
     }
+    
+    public void OnSprintInput(bool sprinting)
+    {
+        m_IsRunning = sprinting;
+    }
+    
+
     public void OnPassInput(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         if (!IsControlledByPlayer) return;
-    
+
         if (context.performed)
         {
             // TacticsManager에게 패스 요청
@@ -62,18 +77,15 @@ public class PlayerMovement : BasePlayerMovement
             }
         }
     }
-    
-    // tab,pass,move, sprint 입력을 직접 설정할 수 있는 메서드
-    // 이 메서드들은 InputManager에서 직접 호출하여 자연스럽게 컨트롤하는 캐릭터를 변경해주는 용도
-    public void SetDirectMoveInput(Vector2 input)
-    {
-        m_InputVector = input;
-    }
+    // public void SetDirectMoveInput(Vector2 input)
+    // {
+    //     m_InputVector = input;
+    // }
 
-    public void SetDirectSprintInput(bool sprinting)
-    {
-        m_IsRunning = sprinting;
-    }
+    // public void SetDirectSprintInput(bool sprinting)
+    // {
+    //     m_IsRunning = sprinting;
+    // }
 
     // private void OnMove(InputAction.CallbackContext context)
     // {

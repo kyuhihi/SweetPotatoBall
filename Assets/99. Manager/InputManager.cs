@@ -10,6 +10,9 @@ public class InputManager : MonoBehaviour
 
     private PlayerInputActions inputActions;
 
+    // 해야할 일
+    // 반대되는 방향키를 누를때 느리게 누른 키로 적용하기 (멈추는 일이 없게 하기 위해)
+
     // 현재 입력 상태 저장
     private Vector2 currentMoveInput = Vector2.zero;
     private bool isCurrentlySprinting = false;
@@ -190,14 +193,16 @@ public class InputManager : MonoBehaviour
         if (currentMoveInput != Vector2.zero)
         {
             // PlayerMovement에 직접 입력 값 설정하는 메서드 필요
-            playerMovement.SetDirectMoveInput(currentMoveInput);
+            playerMovement.OnMoveInput(currentMoveInput);
+            // playerMovement.SetDirectMoveInput(currentMoveInput);
             Debug.Log($"움직임 입력 전달: {currentMoveInput} -> {playerList[playerIndex].name}");
         }
 
         // 현재 스프린트 상태도 전달
         if (isCurrentlySprinting)
         {
-            playerMovement.SetDirectSprintInput(isCurrentlySprinting);
+            playerMovement.OnSprintInput(isCurrentlySprinting);
+            // playerMovement.SetDirectSprintInput(isCurrentlySprinting);
             Debug.Log($"스프린트 입력 전달 -> {playerList[playerIndex].name}");
         }
     }
