@@ -98,7 +98,11 @@ public class TacticsManager : MonoBehaviour
     {
         Debug.Log($"{passer.name}이(가) {receiver.name}에게 패스!");
         //passer.transform.GetChild
-        
+
+        //Rig passerRig = GetPlayerRig(passer);
+
+        Transform headAimTransform = passer.transform.Find("Rig1/HeadAim");
+       
         // 여기에 실제 패스 로직 추가
         // - 공 이동
         // - 애니메이션 재생
