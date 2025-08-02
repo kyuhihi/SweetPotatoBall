@@ -63,7 +63,15 @@ public class PlayerMovement : BasePlayerMovement
         }
     }
     
+    public void SetDirectMoveInput(Vector2 input)
+    {
+        m_InputVector = input;
+    }
 
+    public void SetDirectSprintInput(bool sprinting)
+    {
+        m_IsRunning = sprinting;
+    }
 
     // private void OnMove(InputAction.CallbackContext context)
     // {

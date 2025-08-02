@@ -10,7 +10,9 @@ public class InputManager : MonoBehaviour
 
     private PlayerInputActions inputActions;
 
-
+    // 현재 입력 상태 저장
+    private Vector2 currentMoveInput = Vector2.zero;
+    private bool isCurrentlySprinting = false;
 
     void Awake()
     {
@@ -43,7 +45,6 @@ public class InputManager : MonoBehaviour
         // 이름에서 숫자를 추출해서 정렬
         System.Array.Sort(players, (x, y) =>
         {
-            // "Player1", "Player2" 형식이라고 가정
             string xNumber = x.name.Replace("Player", "");
             string yNumber = y.name.Replace("Player", "");
 
@@ -53,7 +54,6 @@ public class InputManager : MonoBehaviour
             }
             return x.name.CompareTo(y.name);
         });
-
 
         foreach (GameObject player in players)
         {
@@ -70,7 +70,6 @@ public class InputManager : MonoBehaviour
             }
         }
 
-
         SetControlTo(currentIndex);
     }
 
@@ -85,7 +84,10 @@ public class InputManager : MonoBehaviour
 
     private void OnMove(InputAction.CallbackContext context)
     {
-        if (currentIndex < playerList.Count)
+        // 현재 입력 상태 저장
+        currentMoveInput = context.ReadValue<Vector2>();
+
+        if (currentIndex < playerList.Count && playerList[currentIndex] != null)
         {
             PlayerMovement playerMovement = playerList[currentIndex].GetComponent<PlayerMovement>();
             if (playerMovement != null)
@@ -97,7 +99,10 @@ public class InputManager : MonoBehaviour
 
     private void OnSprint(InputAction.CallbackContext context)
     {
-        if (currentIndex < playerList.Count)
+        // 현재 스프린트 상태 저장
+        isCurrentlySprinting = context.performed;
+
+        if (currentIndex < playerList.Count && playerList[currentIndex] != null)
         {
             PlayerMovement playerMovement = playerList[currentIndex].GetComponent<PlayerMovement>();
             if (playerMovement != null)
@@ -106,9 +111,10 @@ public class InputManager : MonoBehaviour
             }
         }
     }
+
     private void OnPass(InputAction.CallbackContext context)
     {
-        if (currentIndex < playerList.Count)
+        if (currentIndex < playerList.Count && playerList[currentIndex] != null)
         {
             PlayerMovement playerMovement = playerList[currentIndex].GetComponent<PlayerMovement>();
             if (playerMovement != null)
@@ -120,29 +126,79 @@ public class InputManager : MonoBehaviour
     
     public void SwitchToPlayer(GameObject targetPlayer)
     {
+        if (targetPlayer == null)
+        {
+            Debug.LogWarning("SwitchToPlayer: targetPlayer가 null입니다.");
+            return;
+        }
+
         int playerIndex = playerList.IndexOf(targetPlayer);
         if (playerIndex >= 0)
         {
             currentIndex = playerIndex;
             SetControlTo(currentIndex);
         }
+        else
+        {
+            Debug.LogWarning($"SwitchToPlayer: {targetPlayer.name}을 playerList에서 찾을 수 없습니다.");
+        }
     }
     
     void SetControlTo(int index)
     {
+        if (index >= playerList.Count || playerList[index] == null)
+        {
+            Debug.LogWarning($"SetControlTo: 유효하지 않은 인덱스 - {index}");
+            return;
+        }
+
+        // 모든 플레이어의 컨트롤 상태 설정
         for (int i = 0; i < playerList.Count; i++)
         {
-            BasePlayerMovement playerMovement = playerList[i].GetComponent<BasePlayerMovement>();
-            if (playerMovement != null)
+            if (playerList[i] != null)
             {
-                playerMovement.IsControlledByPlayer = (i == index);
+                BasePlayerMovement playerMovement = playerList[i].GetComponent<BasePlayerMovement>();
+                if (playerMovement != null)
+                {
+                    playerMovement.IsControlledByPlayer = (i == index);
+                }
             }
+        }
 
-            // 카메라도 현재 플레이어를 따라가도록 설정
-            if (cameraController != null && index < playerList.Count)
-            {
-                cameraController.SetTarget(playerList[index].transform);
-            }
+        // 새 플레이어에게 현재 입력 상태 전달
+        ApplyCurrentInputToPlayer(index);
+
+        // 카메라도 현재 플레이어를 따라가도록 설정
+        if (cameraController != null)
+        {
+            cameraController.SetTarget(playerList[index].transform);
+        }
+
+        Debug.Log($"컨트롤 전환: {playerList[index].name}");
+    }
+
+    private void ApplyCurrentInputToPlayer(int playerIndex)
+    {
+        if (playerIndex >= playerList.Count || playerList[playerIndex] == null)
+            return;
+
+        PlayerMovement playerMovement = playerList[playerIndex].GetComponent<PlayerMovement>();
+        if (playerMovement == null)
+            return;
+
+        // 현재 움직임 입력이 있다면 새 플레이어에게 즉시 적용
+        if (currentMoveInput != Vector2.zero)
+        {
+            // PlayerMovement에 직접 입력 값 설정하는 메서드 필요
+            playerMovement.SetDirectMoveInput(currentMoveInput);
+            Debug.Log($"움직임 입력 전달: {currentMoveInput} -> {playerList[playerIndex].name}");
+        }
+
+        // 현재 스프린트 상태도 전달
+        if (isCurrentlySprinting)
+        {
+            playerMovement.SetDirectSprintInput(isCurrentlySprinting);
+            Debug.Log($"스프린트 입력 전달 -> {playerList[playerIndex].name}");
         }
     }
 }

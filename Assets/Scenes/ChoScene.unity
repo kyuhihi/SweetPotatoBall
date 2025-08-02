@@ -840,7 +840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2072172489}
-  offset: {x: 0, y: 10, z: 0}
+  offset: {x: 0, y: 10, z: -9.5}
   followSpeed: 5
   rotationSpeed: 5
 --- !u!1 &410087039
